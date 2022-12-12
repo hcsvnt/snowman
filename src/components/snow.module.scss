@@ -1,0 +1,38 @@
+.snow {
+  grid-column: 1 / -1;
+  position: relative;
+}
+
+@mixin snowflakes() {
+  @for $index from 1 through 1000 {
+    &--#{$index} {
+      left: random($limit: 980) * 0.1%;
+      top: random($limit: 198) * -1vh;
+      animation-delay: random($limit: 2000) + ms;
+      animation-duration: random($limit: 7000) + 16000ms;
+    }
+  }
+}
+
+@keyframes rain {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(calc(300vh + 2rem));
+  }
+}
+
+.snowflake {
+  color: whitesmoke;
+  font-size: 1.5rem;
+  position: absolute;
+  animation: rain;
+  animation-direction: normal;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-play-state: running;
+
+  @include snowflakes();
+}
